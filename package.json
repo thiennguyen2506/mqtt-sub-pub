@@ -10,8 +10,17 @@
   "author": "ThienNH",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.2",
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.1",
     "mqtt": "^4.3.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiennguyen2506/mqtt-sub-pub.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thiennguyen2506/mqtt-sub-pub/issues"
+  },
+  "homepage": "https://github.com/thiennguyen2506/mqtt-sub-pub#readme"
 }

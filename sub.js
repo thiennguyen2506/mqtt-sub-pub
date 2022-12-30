@@ -1,5 +1,16 @@
+const express = require('express');
 const mqtt = require('mqtt');
 const mongoose = require('mongoose');
+
+const app = express();
+const port = process.env.PORT || 3336;
+
+app.get("/", (req, res) => {
+    res.send('Hi Mqtt Service');
+})
+app.listen(port, () => {
+    console.log(`app listening at: ${port}`);
+})
 
 mongoose.set('strictQuery', false);
 mongoose.connect('mongodb://localhost:27017/mqttdb', (err, db) => {
