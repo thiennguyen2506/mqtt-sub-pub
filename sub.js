@@ -2,7 +2,7 @@ const mqtt = require('mqtt');
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://localhost:27017/mydb', (err, db) => {
+mongoose.connect('mongodb://localhost:27017/mqttdb', (err, db) => {
     if (err) throw err;
     else console.log("DB connected!");
 })
@@ -13,7 +13,7 @@ const messageSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const messageDetail = mongoose.model("message", messageSchema)
+const messageDetail = mongoose.model("messages", messageSchema)
 
 //insert data into mongodb
 function Mongo_insert(message) {
@@ -25,7 +25,7 @@ function Mongo_insert(message) {
 function connection_options(_id) {
     return {
         port: 18833,
-        host: '10.10.10.10',
+        host: 'localhost',
         clientId: _id,
         username: '',
         password: '',
