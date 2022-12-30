@@ -1,9 +1,11 @@
 const express = require('express');
 const mqtt = require('mqtt');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3336;
+const port = process.env.PORT;
+const db = process.env.DB;
 
 app.get("/", (req, res) => {
     res.send('Hi Mqtt Service');
@@ -13,7 +15,7 @@ app.listen(port, () => {
 })
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://localhost:27017/mqttdb', (err, db) => {
+mongoose.connect(`mongodb://localhost:27017/${db}`, (err, db) => {
     if (err) throw err;
     else console.log("DB connected!");
 })
@@ -24,7 +26,7 @@ const messageSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const messageDetail = mongoose.model("messages", messageSchema)
+const messageDetail = mongoose.model("message", messageSchema)
 
 //insert data into mongodb
 function Mongo_insert(message) {
@@ -36,7 +38,7 @@ function Mongo_insert(message) {
 function connection_options(_id) {
     return {
         port: 18833,
-        host: 'localhost',
+        host: '10.10.10.10',
         clientId: _id,
         username: '',
         password: '',
