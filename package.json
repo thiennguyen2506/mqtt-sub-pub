@@ -1,0 +1,17 @@
+{
+  "name": "demomqtt",
+  "version": "1.0.0",
+  "description": "just for project 79ngt",
+  "main": "sub.js",
+  "scripts": {
+    "start": "node sub.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ThienNH",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.13.0",
+    "mongoose": "^6.8.1",
+    "mqtt": "^4.3.7"
+  }
+}
