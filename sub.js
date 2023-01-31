@@ -8,7 +8,7 @@ const port = process.env.PORT;
 const db = process.env.DB;
 
 app.get("/", (req, res) => {
-    res.send('Hi Mqtt Service');
+    res.send('Mqtt Service khởi động thành công');
 })
 app.listen(port, () => {
     console.log(`app listening at: ${port}`);
@@ -26,10 +26,10 @@ const messageSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const messageDetail = mongoose.model("message", messageSchema)
 
 //insert data into mongodb
-function Mongo_insert(message) {
+function Mongo_insert(message, machine) {
+    const messageDetail = mongoose.model(machine, messageSchema)
     let newmess = new messageDetail({ message: message });
     newmess.save();
 }
@@ -37,17 +37,17 @@ function Mongo_insert(message) {
 ///////
 function connection_options(_id) {
     return {
-        port: 18833,
-        host: '10.10.10.10',
+        port: 1883,
+        host: 'localhost',
         clientId: _id,
-        username: '',
-        password: '',
+        username: 'abcde',
+        password: '12345',
         reconnectPeriod: 5000 // Try reconnecting in 5 seconds if connection is lost
     }
 };
 let sub_options = { qos: 0 };
 
-function sub_client_connect_mqtt_broker(client_id, sub_topic) {
+function sub_client_connect_mqtt_broker(client_id, sub_topic, machine_collect) {
     let client_connect = mqtt.connect(connection_options(client_id));
     client_connect.on('connect', () => {
         client_connect.subscribe(sub_topic, sub_options, (err) => {
@@ -61,17 +61,26 @@ function sub_client_connect_mqtt_broker(client_id, sub_topic) {
     client_connect.on('message', (topic, message) => {
         message = message.toString();
         console.log(topic + ": " + message);
-        Mongo_insert(message);
+        Mongo_insert(message, machine_collect);
     })
 }
+// Collection each machine
+let a21_collect = 'a21_collect';
+let a22_collect = 'a22_collect';
+let a23_collect = 'a23_collect';
+
 // Client IDs
 let client_id_a21 = 'sa21';
 let client_id_a22 = 'sa22';
+let client_id_a23 = 'sa23';
+
 
 // Sublisher topic
 let pub_topic_a21 = 'a21_pub';
 let pub_topic_a22 = 'a22_pub';
+let pub_topic_a23 = 'a23_pub';
 
 //Identify new connect from device to MQTT Broker
-sub_client_connect_mqtt_broker(client_id_a21, pub_topic_a21);
-sub_client_connect_mqtt_broker(client_id_a22, pub_topic_a22);
+sub_client_connect_mqtt_broker(client_id_a21, pub_topic_a21, a21_collect);
+sub_client_connect_mqtt_broker(client_id_a22, pub_topic_a22, a22_collect);
+// sub_client_connect_mqtt_broker(client_id_a23, pub_topic_a23, a23_collect);
