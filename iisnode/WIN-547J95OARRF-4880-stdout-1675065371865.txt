@@ -1,0 +1,4 @@
+app listening at: \\.\pipe\77236a35-7737-4c48-920b-2471325c2479
+DB connected!
+sa21 subscribe successfully to a21_pub
+sa22 subscribe successfully to a22_pub

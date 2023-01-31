@@ -37,11 +37,11 @@ function Mongo_insert(message, machine) {
 ///////
 function connection_options(_id) {
     return {
-        port: 1883,
+        port: 18833,
         host: 'localhost',
         clientId: _id,
-        username: 'abcde',
-        password: '12345',
+        username: '',
+        password: '',
         reconnectPeriod: 5000 // Try reconnecting in 5 seconds if connection is lost
     }
 };
