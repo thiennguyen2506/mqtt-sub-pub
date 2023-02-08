@@ -46,7 +46,7 @@ let pub_topic_a21 = 'a21_pub';
 let pub_topic_a22 = 'a22_pub';
 
 let slv = 1;
-let mess_a21 = {
+let mess_a22 = {
     data: {
       xuatbaocao: 0,
       stt_buongsay: 1,
@@ -73,9 +73,9 @@ let mess_a21 = {
       dienap_buongsay: 0,
       dongdien_buongsay: 0
     },
-    event: 'a21_pub'
+    event: 'a22_pub'
   }
 
   // Publish mess
 pub_mess(pub_client_connect_mqtt_broker(client_id_a21), pub_topic_a21, mess_a21);
-// pub_mess(pub_client_connect_mqtt_broker(client_id_a22), pub_topic_a22, mess_a22);
+pub_mess(pub_client_connect_mqtt_broker(client_id_a22), pub_topic_a22, mess_a22);

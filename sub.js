@@ -38,7 +38,7 @@ function Mongo_insert(message, machine) {
 function connection_options(_id) {
     return {
         port: 18833,
-        host: 'localhost',
+        host: '10.10.10.10',
         clientId: _id,
         username: '',
         password: '',
