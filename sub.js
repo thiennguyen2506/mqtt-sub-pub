@@ -72,13 +72,13 @@ let a23_collect = 'a23_collect';
 // Client IDs
 let client_id_a21 = 'sa21';
 let client_id_a22 = 'sa22';
-let client_id_a23 = 'sa23';
+// let client_id_a23 = 'sa23';
 
 
 // Sublisher topic
 let pub_topic_a21 = 'a21_pub';
 let pub_topic_a22 = 'a22_pub';
-let pub_topic_a23 = 'a23_pub';
+// let pub_topic_a23 = 'a23_pub';
 
 //Identify new connect from device to MQTT Broker
 sub_client_connect_mqtt_broker(client_id_a21, pub_topic_a21, a21_collect);
