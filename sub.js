@@ -8,7 +8,9 @@ const port = process.env.PORT;
 const db = process.env.DB;
 
 app.get("/", (req, res) => {
-    res.send('Mqtt Service khởi động thành công');
+    setInterval(function () {
+        res.send('Mqtt Service khởi động thành công');
+    }, 1000)
 })
 app.listen(port, () => {
     console.log(`app listening at: ${port}`);
