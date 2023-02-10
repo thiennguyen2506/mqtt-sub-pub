@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT;
-const db = process.env.DB;
+const port = process.env.PORT || 3336;
+const db = process.env.DB || "79sanxuat";
 
 app.get("/", (req, res) => {
     setInterval(function () {
