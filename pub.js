@@ -3,7 +3,7 @@ const mqtt = require('mqtt');
 function connection_options(client_id) {
     return {
         port: 18833,
-        host: 'localhost',
+        host: '10.10.10.10',
         clientId: client_id,
         username: '',
         password: '',
@@ -40,13 +40,17 @@ function pub_mess(client, topic, i) {
 // Client IDs
 let client_id_a21 = 'a21';
 let client_id_a22 = 'a22';
+let client_id_a23 = 'a233';
+
 
 // Publish topic
 let pub_topic_a21 = 'a21_pub';
 let pub_topic_a22 = 'a22_pub';
+let pub_topic_a23 = 'a233_pub';
+
 
 let slv = 1;
-let mess_a22 = {
+let mess_a23 = {
     data: {
       xuatbaocao: 0,
       stt_buongsay: 1,
@@ -73,9 +77,10 @@ let mess_a22 = {
       dienap_buongsay: 0,
       dongdien_buongsay: 0
     },
-    event: 'a22_pub'
+    event: 'a23_pub'
   }
 
   // Publish mess
-pub_mess(pub_client_connect_mqtt_broker(client_id_a21), pub_topic_a21, mess_a21);
-pub_mess(pub_client_connect_mqtt_broker(client_id_a22), pub_topic_a22, mess_a22);
+// pub_mess(pub_client_connect_mqtt_broker(client_id_a21), pub_topic_a21, mess_a21);
+// pub_mess(pub_client_connect_mqtt_broker(client_id_a22), pub_topic_a22, mess_a22);
+pub_mess(pub_client_connect_mqtt_broker(client_id_a23), pub_topic_a23, mess_a23);
