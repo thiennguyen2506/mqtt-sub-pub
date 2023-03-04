@@ -7,11 +7,11 @@ const app = express();
 const port = process.env.PORT || 3336;
 const db = process.env.DB || "79sanxuat";
 
-app.get("/", (req, res) => {
-    setInterval(function () {
-        res.send('Mqtt Service khởi động thành công');
-    }, 1000)
-})
+// app.get("/", (req, res) => {
+//     setInterval(function () {
+//         res.send('Mqtt Service khởi động thành công');
+//     }, 1700)
+// })
 app.listen(port, () => {
     console.log(`app listening at: ${port}`);
 })
@@ -48,7 +48,7 @@ function connection_options(_id) {
     }
 };
 let sub_options = { qos: 0 };
-
+let old_mess = "";
 function sub_client_connect_mqtt_broker(client_id, sub_topic, machine_collect) {
     let client_connect = mqtt.connect(connection_options(client_id));
     client_connect.on('connect', () => {
@@ -62,8 +62,11 @@ function sub_client_connect_mqtt_broker(client_id, sub_topic, machine_collect) {
     });
     client_connect.on('message', (topic, message) => {
         message = message.toString();
-        console.log(topic + ": " + message);
-        Mongo_insert(message, machine_collect);
+        if (message != old_mess) {
+            console.log(topic + ": " + message);
+            Mongo_insert(message, machine_collect);
+            old_mess = message;
+        }
     })
 }
 // Collection each machine
@@ -72,9 +75,9 @@ let a22_collect = 'a22_collect';
 let a23_collect = 'a23_collect';
 
 // Client IDs
-let client_id_a21 = 'sa21-lap';
-let client_id_a22 = 'sa22-lap';
-let client_id_a23 = 'sa23-lap';
+let client_id_a21 = 'sa21';
+let client_id_a22 = 'sa22';
+let client_id_a23 = 'sa23';
 
 
 // Sublisher topic
